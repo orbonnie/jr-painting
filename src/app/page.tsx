@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import HomeAdvisor from "@/components/HomeAdvisor";
+import Locations from "@/components/Locations";
 import Reviews from "@/components/Reviews";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <main>
       <Hero />
       <HomeAdvisor />
+      <Locations />
       <Reviews />
     </main>
   );

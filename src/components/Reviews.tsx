@@ -59,7 +59,7 @@ export default function Reviews() {
             <h2 className="text-3xl sm:text-4xl font-bold">
               What Do Our Clients Say?
             </h2>
-            <div className="mt-4 h-1 w-16 bg-orange-500" />
+            <div className="mt-2 h-0.5 w-12 bg-orange-800" />
 
             <p className="mt-6 text-slate-200">
               Here are testimonials from clients about their experience and
@@ -103,7 +103,7 @@ export default function Reviews() {
         </div>
 
         {/* Right: HomeAdvisor embedded widget */}
-        <div className="flex items-start justify-center">
+        <div className="mt-1 flex items-start justify-center">
           <div className="w-full max-w-md border border-gray-400/30">
             <iframe
               src="https://www.homeadvisor.com/ratings/embed/iframe/48249658/?orientation=vertical&reviewSort=highest"
