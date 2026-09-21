@@ -48,7 +48,7 @@ export default function HomeCTA() {
 
       {/* Features */}
       <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-12 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-4">
           {features.map((feature) => {
             const Icon = feature.icon;
 
