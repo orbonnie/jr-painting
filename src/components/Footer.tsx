@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import SocialLinks from "@/components/SocialLinks";
 
 const services = [
   { label: "Painting", href: "/services/painting" },
@@ -33,7 +34,12 @@ export default function Footer() {
               vision a reality.
             </p>
 
-            {/* Social links will go here */}
+            <div className="mt-6">
+              <SocialLinks
+                textColor="text-orange-800"
+                hoverColor="text-grey-400"
+              />
+            </div>
           </div>
 
           {/* Services */}
@@ -69,7 +75,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-700 bg-grey-10">
+      <div className="border-t border-gray-700 bg-grey-900">
         <div className="mx-auto max-w-6xl px-6 py-5">
           <p className="text-center text-sm text-gray-400">
             © 2017 Jacob Reitz Painting. All rights reserved.
