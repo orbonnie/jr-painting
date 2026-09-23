@@ -11,7 +11,7 @@ export default function Locations() {
               {/* Logo */}
               <div className="w-32 shrink-0 sm:w-40 md:w-44 lg:w-48">
                 <Image
-                  src="/jr-painting.png"
+                  src="/jr-logo-transp.png"
                   alt="Jacob Reitz Painting"
                   width={200}
                   height={200}
