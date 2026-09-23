@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import HomeAdvisor from "@/components/HomeAdvisor";
 import Locations from "@/components/Locations";
 import Reviews from "@/components/Reviews";
+import HomeCTA from "@/components/HomeCTA";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <HomeAdvisor />
       <Locations />
       <Reviews />
+      <HomeCTA />
     </main>
   );
 }

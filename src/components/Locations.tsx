@@ -11,7 +11,7 @@ export default function Locations() {
               {/* Logo */}
               <div className="w-32 shrink-0 sm:w-40 md:w-44 lg:w-48">
                 <Image
-                  src="/jr-painting.png"
+                  src="/jr-logo-transp.png"
                   alt="Jacob Reitz Painting"
                   width={200}
                   height={200}
@@ -41,21 +41,20 @@ export default function Locations() {
             <h2 className="mt-5 text-2xl font-bold sm:text-3xl ">
               Where We Work
             </h2>
-            <div className="mt-2 h-0.5 w-12 bg-orange-800" />
-            <div className="mt-8">
-              <div className="border-t border-gray-300 py-5">
-                <p className="text-lg font-semibold uppercase tracking-wide">
+            {/* <div className="mt-2 h-0.5 w-12 bg-orange-800" /> */}
+            <div className="mt-8 space-y-7">
+              <div className="flex items-center gap-5">
+                <div className="h-8 w-0.5 bg-orange-800" />
+                <p className="text-lg font-semibold tracking-wide">
                   Southern California
                 </p>
               </div>
-
-              <div className="border-t border-gray-300 py-5">
-                <p className="text-lg font-semibold uppercase tracking-wide">
+              <div className="flex items-center gap-5">
+                <div className="h-8 w-0.5 bg-orange-800" />
+                <p className="text-lg font-semibold tracking-wide">
                   Houston Gulf Coast
                 </p>
               </div>
-
-              <div className="border-t border-gray-300" />
             </div>
           </div>
         </div>

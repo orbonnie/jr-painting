@@ -55,7 +55,7 @@ export default function Reviews() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
         {/* Left: testimonial card, with paintbrush image bleeding out behind it */}
         <div className="relative">
-          <div className="relative rounded-md bg-slate-800 p-8 sm:p-10 text-white shadow-xl">
+          <div className="relative rounded-md bg-grey-900 p-8 sm:p-10 text-white shadow-xl">
             <h2 className="text-3xl sm:text-4xl font-bold">
               What Do Our Clients Say?
             </h2>
