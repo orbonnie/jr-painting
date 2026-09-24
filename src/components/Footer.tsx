@@ -53,7 +53,7 @@ export default function Footer() {
                 <Link
                   key={service.href}
                   href={service.href}
-                  className="text-sm text-gray-300 transition-colors hover:text-orange-900"
+                  className="text-sm text-gray-300 transition-colors hover:text-orange-700"
                 >
                   {service.label}
                 </Link>
@@ -67,8 +67,15 @@ export default function Footer() {
             </h3>
 
             <div className="mt-6 flex flex-col gap-3 text-sm text-gray-300">
-              <span>(310) 497-9326</span>
-              <span>info.jacobreitzpainting@gmail.com</span>
+              <a href="tel:+13104979326" className="hover:text-orange-700">
+                (310) 497-9326
+              </a>
+              <a
+                href="mailto:info.jacobreitzpainting@gmail.com"
+                className="hover:text-orange-700"
+              >
+                info.jacobreitzpainting@gmail.com
+              </a>
             </div>
           </div>
         </div>
