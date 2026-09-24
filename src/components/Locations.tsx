@@ -25,7 +25,7 @@ export default function Locations() {
                   One of Southern California&apos;s Leading Paint Services
                 </h2>
 
-                <div className="mt-2 h-0.25 w-10 bg-orange-800" />
+                <div className="mt-2 h-px w-10 bg-orange-800" />
 
                 <p className="mt-6 leading-7 text-gray-600">
                   Being one of the top in our field means that we are committed
@@ -44,13 +44,13 @@ export default function Locations() {
             {/* <div className="mt-2 h-0.5 w-12 bg-orange-800" /> */}
             <div className="mt-8 space-y-7">
               <div className="flex items-center gap-5">
-                <div className="h-8 w-0.25 bg-orange-800" />
+                <div className="h-8 w-px bg-orange-800" />
                 <p className="text-lg font-semibold tracking-wide">
                   Southern California
                 </p>
               </div>
               <div className="flex items-center gap-5">
-                <div className="h-8 w-0.25 bg-orange-800" />
+                <div className="h-8 w-px bg-orange-800" />
                 <p className="text-lg font-semibold tracking-wide">
                   Houston Gulf Coast
                 </p>
