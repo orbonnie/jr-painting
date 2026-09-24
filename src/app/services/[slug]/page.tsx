@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { reviews } from "@/data/reviews";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
+import Testimonials from "@/components/Testimonials";
 import ProjectCard from "@/components/ProjectCard";
+import Projects from "@/components/Projects";
 
 type Props = {
   params: Promise<{
@@ -116,51 +117,11 @@ export default async function ServicePage({ params }: Props) {
 
       <hr className="text-grey-400 mx-[10vw]" />
 
-      {/* Reviews */}
-      <section className="w-full">
-        <div className="mx-auto max-w-6xl mb-10 px-10 md:px-20">
-          <div className="grid gap-x-16 gap-y-16 pt-16 md:grid-cols-2">
-            {reviews.map((review) => (
-              <div key={review.name} className="flex gap-4">
-                <span className="shrink-0 font-serif text-7xl leading-none text-grey-500">
-                  &ldquo;
-                </span>
-
-                <div>
-                  <p className="text-sm leading-7 text-grey-900">
-                    {review.text}
-                  </p>
-
-                  <p className="mt-4 text-lg text-grey-900">— {review.name}</p>
-
-                  <p className="mt-1 text-sm text-grey-700">
-                    {review.location}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Testimonials />
 
       <hr className="text-grey-400 mx-[10vw]" />
 
-      <section className="w-full">
-        <div className="mx-auto max-w-6xl py-16 px-10 md:px-20">
-          {/* <div>
-          <h2 className="mb-10 text-2xl font-light uppercase text-grey-900">
-            Projects
-          </h2>
-          <div className="mb-5 h-0.25 w-10 bg-orange-800" />
-        </div> */}
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <Projects />
     </main>
   );
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
-import { reviews } from "@/data/reviews";
+import Testimonials from "@/components/Testimonials";
 
 export default function RequestAQuotePage() {
   return (
@@ -45,39 +45,7 @@ export default function RequestAQuotePage() {
 
       <hr className="mx-[10vw] text-grey-400" />
 
-      {/* Testimonials */}
-      <section className="w-full">
-        <div className="mx-auto mb-10 max-w-6xl px-10 md:px-20">
-          <div className="pt-16">
-            <h2 className="mb-2 text-2xl font-semibold text-grey-900">
-              Recent Testimonials
-            </h2>
-            <div className="mb-5 h-px w-10 bg-orange-800" />
-          </div>
-
-          <div className="grid gap-x-16 gap-y-16 pb-16 md:grid-cols-2">
-            {reviews.map((review) => (
-              <div key={review.name} className="flex gap-4">
-                <span className="shrink-0 font-serif text-7xl leading-none text-grey-500">
-                  &ldquo;
-                </span>
-
-                <div>
-                  <p className="text-sm leading-7 text-grey-900">
-                    {review.text}
-                  </p>
-
-                  <p className="mt-4 text-lg text-grey-900">— {review.name}</p>
-
-                  <p className="mt-1 text-sm text-grey-700">
-                    {review.location}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Testimonials />
     </main>
   );
 }
