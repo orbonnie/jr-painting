@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { reviews } from "@/data/reviews";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
+import Testimonials from "@/components/Testimonials";
 import ProjectCard from "@/components/ProjectCard";
 
 type Props = {
@@ -116,32 +117,7 @@ export default async function ServicePage({ params }: Props) {
 
       <hr className="text-grey-400 mx-[10vw]" />
 
-      {/* Reviews */}
-      <section className="w-full">
-        <div className="mx-auto max-w-6xl mb-10 px-10 md:px-20">
-          <div className="grid gap-x-16 gap-y-16 pt-16 md:grid-cols-2">
-            {reviews.map((review) => (
-              <div key={review.name} className="flex gap-4">
-                <span className="shrink-0 font-serif text-7xl leading-none text-grey-500">
-                  &ldquo;
-                </span>
-
-                <div>
-                  <p className="text-sm leading-7 text-grey-900">
-                    {review.text}
-                  </p>
-
-                  <p className="mt-4 text-lg text-grey-900">— {review.name}</p>
-
-                  <p className="mt-1 text-sm text-grey-700">
-                    {review.location}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Testimonials />
 
       <hr className="text-grey-400 mx-[10vw]" />
 
