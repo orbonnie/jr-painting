@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const slides = [
   {
-    image: "/painting-1.jpg",
+    image: "/feature-1.jpg",
     icon: (
       <svg
         width="55"
@@ -34,32 +34,7 @@ const slides = [
     linkText: "Our Services",
   },
   {
-    image: "/painting-2.jpg",
-    icon: (
-      <svg
-        width="45"
-        height="60"
-        viewBox="0 0 100 130"
-        fill="none"
-        stroke="#F5941F"
-        strokeWidth="4"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      >
-        <path d="M50,10 C75,25 85,55 50,100 C15,55 25,25 50,10 Z" />
-        <line x1="50" y1="30" x2="50" y2="120" />
-        <line x1="50" y1="70" x2="35" y2="58" />
-        <line x1="50" y1="85" x2="63" y2="75" />
-      </svg>
-    ),
-    title: "Full Service Painting",
-    description:
-      "We deliver complete quality workmanship on all projects, big and small. ",
-    link: "/projects",
-    linkText: "View Projects",
-  },
-  {
-    image: "/painting-3.jpg",
+    image: "/feature-2.jpg",
     icon: (
       <svg
         width="40"
@@ -84,8 +59,33 @@ const slides = [
     title: "Commercial & Residential",
     description:
       "Our seasoned painters specialize in high end and custom painting for a variety of buildings.",
-    link: "/quote",
-    linkText: "Get a Quote",
+    link: "/contact",
+    linkText: "Contact Us",
+  },
+  {
+    image: "/feature-3.jpg",
+    icon: (
+      <svg
+        width="45"
+        height="60"
+        viewBox="0 0 100 130"
+        fill="none"
+        stroke="#F5941F"
+        strokeWidth="4"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      >
+        <path d="M50,10 C75,25 85,55 50,100 C15,55 25,25 50,10 Z" />
+        <line x1="50" y1="30" x2="50" y2="120" />
+        <line x1="50" y1="70" x2="35" y2="58" />
+        <line x1="50" y1="85" x2="63" y2="75" />
+      </svg>
+    ),
+    title: "Full Service Painting",
+    description:
+      "We deliver complete quality workmanship on all projects, big and small. ",
+    link: "/projects",
+    linkText: "View Projects",
   },
 ];
 
@@ -101,7 +101,7 @@ export default function Hero() {
   useEffect(() => {
     const showContentTimeout = setTimeout(() => {
       setShowContent(true);
-    }, 3000);
+    }, 2000);
 
     const hideContentTimeout = setTimeout(() => {
       setShowContent(false);
@@ -183,7 +183,7 @@ export default function Hero() {
               {/* Link */}
               <a
                 href={slides[index].link}
-                className="mt-6 inline-block rounded-md bg-orange-900 px-6 py-3 font-semibold text-white transition hover:bg-orange-800"
+                className="mt-6 inline-block font-light tracking-widest uppercase rounded-xs bg-orange-900 px-6 py-3 text-white text-sm transition hover:bg-orange-800"
               >
                 {slides[index].linkText}
               </a>

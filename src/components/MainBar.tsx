@@ -103,7 +103,7 @@ export default function MainBar() {
         {/* Quote */}
         <Link
           href="/quote"
-          className="bg-orange-800 text-gray-900 font-semibold rounded px-4 py-2 text-xs uppercase  transition-colors hover:bg-grey-900 hover:text-white"
+          className="bg-orange-800 text-gray-900 font-semibold rounded-xs px-5 py-3 text-xs uppercase transition-colors hover:bg-grey-900 hover:text-white"
         >
           Get a Quote
         </Link>

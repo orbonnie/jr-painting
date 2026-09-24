@@ -39,7 +39,7 @@ export default function HomeCTA() {
 
           <a
             href="/contact"
-            className="shrink-0 bg-gray-600 px-5 py-4 text-sm rounded text-white transition hover:bg-gray-800"
+            className="shrink-0 bg-gray-700 px-5 py-4 text-sm rounded-sm text-white transition hover:bg-gray-800"
           >
             Contact Us
           </a>
