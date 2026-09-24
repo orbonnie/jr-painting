@@ -55,11 +55,11 @@ export default function Reviews() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
         {/* Left: testimonial card, with paintbrush image bleeding out behind it */}
         <div className="relative">
-          <div className="relative rounded-md bg-grey-900 p-8 sm:p-10 text-white shadow-xl">
+          <div className="relative rounded-md bg-grey-800 p-8 sm:p-10 text-white shadow-xl">
             <h2 className="text-3xl sm:text-4xl font-bold">
               What Do Our Clients Say?
             </h2>
-            <div className="mt-2 h-0.5 w-12 bg-orange-800" />
+            <div className="mt-2 h-0.25 w-10 bg-orange-800" />
 
             <p className="mt-6 text-slate-200">
               Here are testimonials from clients about their experience and
@@ -70,7 +70,7 @@ export default function Reviews() {
               <span className="absolute -top-4 -left-1 text-6xl font-serif text-slate-500 select-none">
                 &ldquo;
               </span>
-              <p className="pl-6 text-lg leading-relaxed text-slate-100 min-h-[140px]">
+              <p className="pl-6 text-lg leading-relaxed text-slate-100 min-h-35">
                 {current.quote}
               </p>
 
@@ -95,7 +95,7 @@ export default function Reviews() {
               href="https://www.homeadvisor.com/rated.JacobReitzPainting.48249658.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-block bg-slate-100 px-6 py-3 text-sm font-medium text-slate-800 hover:bg-white transition-colors"
+              className="mt-8 inline-block bg-slate-100 px-5 py-4 text-sm font-medium text-slate-800 rounded-sm hover:bg-white transition-colors"
             >
               Read More
             </a>

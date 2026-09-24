@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { reviews } from "@/data/reviews";
 import { services } from "@/data/services";
+import { projects } from "@/data/projects";
+import ProjectCard from "@/components/ProjectCard";
 
 type Props = {
   params: Promise<{
@@ -21,7 +23,7 @@ export default async function ServicePage({ params }: Props) {
     <main>
       {/* Hero */}
       <section className=" bg-grey-800">
-        <div className="mx-auto flex min-h-60 max-w-7xl flex-col px-6 pt-16">
+        <div className="mx-auto flex min-h-60 max-w-6xl flex-col px-10 pt-16 md:px-20">
           <h1 className="text-5xl text-white font-semibold sm:text-4xl">
             {service.title}
           </h1>
@@ -62,7 +64,7 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       {/* Descriptions */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
+      <section className="mx-auto max-w-6xl py-16 px-10 md:px-20">
         <div className="w-3/4">
           <div className="mb-10">
             <div className="mb-5 h-0.25 w-10 bg-orange-800" />
@@ -116,7 +118,7 @@ export default async function ServicePage({ params }: Props) {
 
       {/* Reviews */}
       <section className="w-full">
-        <div className="mx-auto max-w-7xl mb-10 px-6">
+        <div className="mx-auto max-w-6xl mb-10 px-10 md:px-20">
           <div className="grid gap-x-16 gap-y-16 pt-16 md:grid-cols-2">
             {reviews.map((review) => (
               <div key={review.name} className="flex gap-4">
@@ -142,6 +144,23 @@ export default async function ServicePage({ params }: Props) {
       </section>
 
       <hr className="text-grey-400 mx-[10vw]" />
+
+      <section className="w-full">
+        <div className="mx-auto max-w-6xl py-16 px-10 md:px-20">
+          {/* <div>
+          <h2 className="mb-10 text-2xl font-light uppercase text-grey-900">
+            Projects
+          </h2>
+          <div className="mb-5 h-0.25 w-10 bg-orange-800" />
+        </div> */}
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
