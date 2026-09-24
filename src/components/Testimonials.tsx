@@ -27,7 +27,7 @@ export default function Testimonials() {
         </div>
 
         {/* Desktop */}
-        <div className="hidden grid-cols-2 gap-x-16 gap-y-16 pb-16 md:grid">
+        <div className="hidden grid-cols-2 gap-x-16 gap-y-16 pb-16 lg:grid">
           {reviews.map((review) => (
             <div key={review.name} className="flex gap-4">
               <span className="shrink-0 font-serif text-7xl leading-none text-grey-500">
@@ -46,7 +46,7 @@ export default function Testimonials() {
         </div>
 
         {/* Mobile */}
-        <div className="pb-10 md:hidden">
+        <div className="pb-10 lg:hidden">
           <div className="min-h-75 overflow-hidden">
             <div key={index} className="flex gap-4 animate-slide-in-right">
               <span className="shrink-0 font-serif text-7xl leading-none text-grey-500">

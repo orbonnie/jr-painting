@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { reviews } from "@/data/reviews";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 import Testimonials from "@/components/Testimonials";
 import ProjectCard from "@/components/ProjectCard";
+import Projects from "@/components/Projects";
 
 type Props = {
   params: Promise<{
@@ -121,22 +121,7 @@ export default async function ServicePage({ params }: Props) {
 
       <hr className="text-grey-400 mx-[10vw]" />
 
-      <section className="w-full">
-        <div className="mx-auto max-w-6xl py-16 px-10 md:px-20">
-          {/* <div>
-          <h2 className="mb-10 text-2xl font-light uppercase text-grey-900">
-            Projects
-          </h2>
-          <div className="mb-5 h-0.25 w-10 bg-orange-800" />
-        </div> */}
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <Projects />
     </main>
   );
 }
