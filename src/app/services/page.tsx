@@ -70,7 +70,7 @@ export default function Services() {
             return (
               <div
                 key={service.title}
-                className="flex flex-col p-10 border-y border-gray-400/30 hover:bg-grey-300 md:border md:p-5"
+                className="flex flex-col p-10 border-y border-gray-400/30 rounded-sm hover:bg-grey-300 md:border md:p-5"
               >
                 <Icon
                   size={40}
