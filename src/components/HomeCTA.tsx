@@ -1,4 +1,4 @@
-import { Users, Gem, History, Heart, UserRoundGroup } from "lucide-react";
+import { Users, Gem, History, Heart } from "lucide-react";
 
 const features = [
   {

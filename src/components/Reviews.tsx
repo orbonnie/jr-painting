@@ -41,7 +41,7 @@ export default function Reviews() {
   const current = testimonials[active];
 
   return (
-    <section className="relative isolate bg-white py-16 px-4 sm:px-8 overflow-hidden lg:min-h-[750px] lg:flex lg:items-center">
+    <section className="relative isolate bg-white py-16 px-4 sm:px-8 overflow-hidden lg:min-h-187.5 lg:flex lg:items-center">
       <div className="absolute inset-0 -z-10">
         <Image
           src="/paintbrush.png"
@@ -59,7 +59,7 @@ export default function Reviews() {
             <h2 className="text-3xl sm:text-4xl font-bold">
               What Do Our Clients Say?
             </h2>
-            <div className="mt-2 h-0.25 w-10 bg-orange-800" />
+            <div className="mt-2 h-px w-10 bg-orange-800" />
 
             <p className="mt-6 text-slate-200">
               Here are testimonials from clients about their experience and

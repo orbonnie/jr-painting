@@ -67,7 +67,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="mx-auto max-w-6xl py-16 px-10 md:px-20">
         <div className="w-3/4">
           <div className="mb-10">
-            <div className="mb-5 h-0.25 w-10 bg-orange-800" />
+            <div className="mb-5 h-px w-10 bg-orange-800" />
 
             <h2 className="text-md font-light text-black">
               Sustainable Construction – Building Confidence Based on a
