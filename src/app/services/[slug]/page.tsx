@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
+import SubpageHero from "@/components/SubpageHero";
 import Testimonials from "@/components/Testimonials";
 import Projects from "@/components/Projects";
 
@@ -21,8 +22,14 @@ export default async function ServicePage({ params }: Props) {
 
   return (
     <main>
+      <SubpageHero
+        title={service.title}
+        parent="Services"
+        parentHref="/services"
+        showServiceNav={true}
+      />
       {/* Hero */}
-      <section className=" bg-grey-800">
+      {/* <section className=" bg-grey-800">
         <div className="mx-auto flex min-h-60 max-w-6xl flex-col px-10 pt-16 md:px-20">
           <h1 className="text-5xl text-white font-semibold sm:text-4xl">
             {service.title}
@@ -41,9 +48,9 @@ export default async function ServicePage({ params }: Props) {
             <span className="mx-2 text-orange-800">›</span>
 
             <span className="text-orange-800">{service.title}</span>
-          </div>
-          {/* Service navigation */}
-          <nav className="mt-auto border-t border-grey-300/20">
+          </div> */}
+      {/* Service navigation */}
+      {/* <nav className="mt-auto border-t border-grey-300/20">
             <div className="flex flex-wrap gap-x-8 gap-y-3 py-4">
               {services.map((item) => (
                 <Link
@@ -61,7 +68,7 @@ export default async function ServicePage({ params }: Props) {
             </div>
           </nav>
         </div>
-      </section>
+      </section> */}
 
       {/* Descriptions */}
       <section className="mx-auto max-w-6xl py-16 px-10 md:px-20">
