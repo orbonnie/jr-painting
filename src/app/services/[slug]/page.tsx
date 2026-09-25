@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 import Testimonials from "@/components/Testimonials";
-import ProjectCard from "@/components/ProjectCard";
 import Projects from "@/components/Projects";
 
 type Props = {
@@ -49,7 +48,7 @@ export default async function ServicePage({ params }: Props) {
               {services.map((item) => (
                 <Link
                   key={item.slug}
-                  href={`/service/${item.slug}`}
+                  href={`/services/${item.slug}`}
                   className={`text-xs uppercase tracking-wider transition-colors ${
                     item.slug === service.slug
                       ? "text-orange-800"
@@ -121,7 +120,7 @@ export default async function ServicePage({ params }: Props) {
 
       <hr className="text-grey-400 mx-[10vw]" />
 
-      <Projects />
+      <Projects projects={projects.slice(0, 3)} />
     </main>
   );
 }

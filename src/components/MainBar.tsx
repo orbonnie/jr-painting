@@ -70,7 +70,7 @@ export default function MainBar() {
             type="button"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen(!menuOpen)}
-            className="ml-4 text-gray-800 transition-colors hover:text-orange-900 md:hidden"
+            className="ml-4 text-gray-800 transition-colors hover:text-orange-800 md:hidden"
           >
             <Menu size={28} strokeWidth={1.5} />
           </button>
@@ -82,7 +82,7 @@ export default function MainBar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-sm tracking-widest uppercase text-black hover:text-orange-900 transition-colors"
+                  className="text-sm tracking-widest uppercase text-black hover:text-orange-800 hover:font-semibold transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -90,16 +90,6 @@ export default function MainBar() {
             })}
           </nav>
         </div>
-
-        {/* <div className="flex items-center gap-8"> */}
-        {/* <Link
-              href="/contact"
-              className="text-sm tracking-widest uppercase text-black hover:text-grey-400 transition-colors"
-            >
-              Contact Us
-            </Link>
-          </div>
-          */}
         {/* Quote */}
         <Link
           href="/quote"
@@ -126,7 +116,7 @@ export default function MainBar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="block border-b border-gray-100 px-6 py-5 text-sm uppercase tracking-widest text-black transition-colors hover:bg-grey-300"
+                className="block border-b border-gray-100 px-6 py-5 text-sm uppercase tracking-widest text-black transition-colors hover:bg-grey-300 hover:font-semibold"
               >
                 {link.label}
               </Link>

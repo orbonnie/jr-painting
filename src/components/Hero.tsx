@@ -13,7 +13,7 @@ const slides = [
         height="45"
         viewBox="0 0 120 100"
         fill="none"
-        stroke="#F5941F"
+        stroke="#fc8b00"
         strokeWidth="4"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -41,7 +41,7 @@ const slides = [
         height="40"
         viewBox="0 0 100 100"
         fill="none"
-        stroke="#F5941F"
+        stroke="##fc8b00"
         strokeWidth="5"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -70,7 +70,7 @@ const slides = [
         height="60"
         viewBox="0 0 100 130"
         fill="none"
-        stroke="#F5941F"
+        stroke="#fc8b00"
         strokeWidth="4"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -136,7 +136,7 @@ export default function Hero() {
 
         {/* Dark overlay */}
         <div
-          className={`absolute inset-0 bg-black/30 transition-opacity duration-700 ${
+          className={`absolute inset-0 bg-black/40 transition-opacity duration-700 ${
             showContent ? "opacity-100" : "opacity-0"
           }`}
         />
@@ -183,7 +183,7 @@ export default function Hero() {
               {/* Link */}
               <a
                 href={slides[index].link}
-                className="mt-6 inline-block font-light tracking-widest uppercase rounded-xs bg-orange-900 px-6 py-3 text-white text-sm transition hover:bg-orange-800"
+                className="mt-6 inline-block font-light tracking-widest uppercase rounded-xs bg-orange-800 px-6 py-3 text-white text-sm transition hover:bg-orange-700"
               >
                 {slides[index].linkText}
               </a>

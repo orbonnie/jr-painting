@@ -1,7 +1,11 @@
-export default function Project() {
+import PageHero from "@/components/PageHero";
+import ProjectFilter from "@/components/ProjectFilter";
+
+export default function ProjectsPage() {
   return (
     <main>
-      <h1>Projects</h1>
+      <PageHero title="Projects" />
+      <ProjectFilter />
     </main>
-  )
+  );
 }
