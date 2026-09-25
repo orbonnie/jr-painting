@@ -1,13 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Project } from "@/data/projects";
 import { cloudinaryImage } from "@/lib/cloudinaryImage";
-
-type Project = {
-  slug: string;
-  title: string;
-  images: string[];
-  cloudinaryFolder: string;
-};
 
 type ProjectCardProps = {
   project: Project;

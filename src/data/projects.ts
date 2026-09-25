@@ -3,12 +3,12 @@ type ProjectCategory = "commercial" | "residential" | "interior" | "exterior";
 export type Project = {
   slug: string;
   title: string;
-  description: string;
+  desc: string;
   images: string[];
   categories: ProjectCategory[];
 };
 
-export const projects = [
+export const projects: Project[] = [
   {
     slug: "pti-products-techniques",
     title: "PTI – Products Techniques Inc.",
