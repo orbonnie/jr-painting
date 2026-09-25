@@ -20,6 +20,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         src={cloudinaryImage(project.images[0])}
         alt={project.title}
         fill
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="object-cover"
       />
 

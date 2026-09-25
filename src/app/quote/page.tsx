@@ -1,28 +1,12 @@
-import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 import Testimonials from "@/components/Testimonials";
+import PageHero from "@/components/PageHero";
 
 export default function RequestAQuotePage() {
   return (
     <main>
       {/* Hero */}
-      <section className="bg-grey-800">
-        <div className="mx-auto flex min-h-60 max-w-6xl flex-col px-10 py-16 md:px-20">
-          <h1 className="text-3xl font-semibold text-white sm:text-4xl">
-            Request A Quote
-          </h1>
-
-          <div className="mt-3 text-sm text-white">
-            <Link href="/" className="hover:text-orange-600">
-              Home
-            </Link>
-
-            <span className="mx-2 text-orange-800">›</span>
-
-            <span className="text-orange-800">Request A Quote</span>
-          </div>
-        </div>
-      </section>
+      <PageHero title="Request A Quote" />
 
       {/* Quote form */}
       <section className="mx-auto max-w-6xl px-10 py-16 md:px-20 lg:px-16">
