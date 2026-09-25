@@ -1,4 +1,8 @@
-type ProjectCategory = "commercial" | "residential" | "interior" | "exterior";
+export type ProjectCategory =
+  | "commercial"
+  | "residential"
+  | "interior"
+  | "exterior";
 
 export type Project = {
   slug: string;
