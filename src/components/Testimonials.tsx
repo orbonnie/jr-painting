@@ -1,19 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { reviews } from "@/data/reviews";
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
+    if (hovered) return;
+
     const interval = setInterval(() => {
       setIndex((current) => (current === reviews.length - 1 ? 0 : current + 1));
     }, 6000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [hovered]);
 
   return (
     <section className="w-full">
@@ -53,7 +55,10 @@ export default function Testimonials() {
                 &ldquo;
               </span>
 
-              <div>
+              <div
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+              >
                 <p className="text-sm leading-7 text-grey-900">
                   {reviews[index].text}
                 </p>

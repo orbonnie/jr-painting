@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { cloudinaryImage } from "@/lib/cloudinaryImage";
 
@@ -16,6 +16,14 @@ export default function ProjectCarousel({
   images,
 }: ProjectCarouselProps) {
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((current) => (current === images.length - 1 ? 0 : current + 1));
+    }, 8000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   function previous() {
     setIndex((current) => (current === 0 ? images.length - 1 : current - 1));
@@ -37,6 +45,7 @@ export default function ProjectCarousel({
           className="object-cover"
         />
 
+        {/* Alt img format*/}
         {/* <img
           src={cloudinaryImage(images[index])}
           alt={`${title} project image ${index + 1}`}

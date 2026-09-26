@@ -16,12 +16,11 @@ export default function ContactPage() {
               </h2>
               <div className="mb-5 h-px w-10 bg-orange-800" />
             </div>
-
             <ContactForm />
           </div>
 
           {/* Contact info */}
-          <div>
+          <div className="order-first md:order-last">
             <div>
               <h2 className="mb-2 text-2xl font-semibold text-grey-900">
                 Contact Info
