@@ -98,11 +98,27 @@ export default function Projects({
           /* Stacked mobile projects */
           <div className="grid grid-cols-1 gap-8 pb-16 md:hidden">
             {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+              <StackedProjectCard key={project.slug} project={project} />
             ))}
           </div>
         )}
       </div>
     </section>
+  );
+}
+
+function StackedProjectCard({
+  project,
+}: {
+  project: (typeof projectData)[number];
+}) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <ProjectCard
+      project={project}
+      mobileOpen={mobileOpen}
+      setMobileOpen={setMobileOpen}
+    />
   );
 }
