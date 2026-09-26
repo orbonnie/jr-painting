@@ -50,8 +50,8 @@ export default function MainBar() {
   }, [menuOpen]);
 
   return (
-    <div className="relative w-full border-b border-gray-200">
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+    <div className="relative w-full border-b border-gray-400 bg-white">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-2">
         {/* Logo + navigation */}
         <div className="flex items-center">
           <Link href="/">
@@ -60,7 +60,7 @@ export default function MainBar() {
               alt="Jacob Reitz Painting"
               width={200}
               height={200}
-              className="h-16 w-auto"
+              className="h-14 w-auto"
             />
           </Link>
 

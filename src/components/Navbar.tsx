@@ -8,9 +8,11 @@ export default function Navbar() {
   // const [open, setOpen] = useState(false);
 
   return (
-    <header>
+    <>
       <TopBar />
-      <MainBar />
-    </header>
+      <div className="sticky top-0 z-50">
+        <MainBar />
+      </div>
+    </>
   );
 }
