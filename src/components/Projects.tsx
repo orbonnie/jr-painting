@@ -7,15 +7,21 @@ import ProjectCard from "@/components/ProjectCard";
 type ProjectsProps = {
   title?: string;
   projects?: typeof projectData;
+  carousel?: boolean;
 };
 
 export default function Projects({
   title = "Recent Projects",
   projects = projectData,
+  carousel = true,
 }: ProjectsProps) {
   const [index, setIndex] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
+    if (!carousel || mobileOpen || hovered) return;
+
     const interval = setInterval(() => {
       setIndex((current) =>
         current === projects.length - 1 ? 0 : current + 1,
@@ -23,7 +29,7 @@ export default function Projects({
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [projects.length]);
+  }, [carousel, mobileOpen, hovered, projects.length]);
 
   return (
     <section className="w-full">
@@ -47,37 +53,55 @@ export default function Projects({
         </div>
 
         {/* Mobile */}
-        <div
-          key={projects.map((project) => project.slug).join("-")}
-          className="pb-10 md:hidden"
-        >
-          {projects.length > 0 && (
-            <>
-              <div className="overflow-hidden">
-                <div key={index} className="animate-slide-in-right">
-                  <ProjectCard project={projects[index]} />
+        {carousel ? (
+          <div
+            key={projects.map((project) => project.slug).join("-")}
+            className="pb-10 md:hidden"
+          >
+            {projects.length > 0 && (
+              <>
+                <div
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
+                  className="overflow-hidden"
+                >
+                  <div key={index} className="animate-slide-in-right">
+                    <ProjectCard
+                      project={projects[index]}
+                      mobileOpen={mobileOpen}
+                      setMobileOpen={setMobileOpen}
+                      onHoverChange={setHovered}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Carousel dots */}
-              <div className="mt-5 flex justify-center gap-2">
-                {projects.map((project, projectIndex) => (
-                  <button
-                    key={project.slug}
-                    type="button"
-                    onClick={() => setIndex(projectIndex)}
-                    aria-label={`Show project ${projectIndex + 1}`}
-                    className={`h-2.5 w-2.5 rounded-full transition-colors ${
-                      projectIndex === index
-                        ? "bg-orange-800"
-                        : "bg-grey-400 hover:bg-grey-600"
-                    }`}
-                  />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
+                {/* Carousel dots */}
+                <div className="mt-5 flex justify-center gap-2">
+                  {projects.map((project, projectIndex) => (
+                    <button
+                      key={project.slug}
+                      type="button"
+                      onClick={() => setIndex(projectIndex)}
+                      aria-label={`Show project ${projectIndex + 1}`}
+                      className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                        projectIndex === index
+                          ? "bg-orange-800"
+                          : "bg-grey-400 hover:bg-grey-600"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        ) : (
+          /* Stacked mobile projects */
+          <div className="grid grid-cols-1 gap-8 pb-16 md:hidden">
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

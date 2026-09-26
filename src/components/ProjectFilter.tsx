@@ -56,7 +56,12 @@ export default function ProjectFilter() {
         </div>
       </section>
 
-      <Projects key={filter} title="" projects={filteredProjects} />
+      <Projects
+        key={filter}
+        title=""
+        projects={filteredProjects}
+        carousel={false}
+      />
     </>
   );
 }

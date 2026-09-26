@@ -33,13 +33,6 @@ export default function Footer() {
               that we are committed to every project, making every client&apos;s
               vision a reality.
             </p>
-
-            <div className="mt-6">
-              <SocialLinks
-                textColor="text-orange-800"
-                hoverColor="text-grey-400"
-              />
-            </div>
           </div>
 
           {/* Services */}
@@ -78,6 +71,10 @@ export default function Footer() {
               </a>
             </div>
           </div>
+        </div>
+        {/* Social links */}
+        <div className="mt-5 pt-6">
+          <SocialLinks textColor="text-orange-800" hoverColor="text-grey-400" />
         </div>
       </div>
 
