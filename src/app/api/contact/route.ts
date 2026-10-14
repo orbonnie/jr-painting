@@ -19,21 +19,37 @@ export async function POST(req: Request) {
       );
     }
 
+    const escapeHtml = (value: string) =>
+      value.replace(/[&<>"']/g, (char) => {
+        const entities: Record<string, string> = {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        };
+
+        return entities[char];
+      });
+
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeSubject = escapeHtml(subject || "No subject provided");
+    const safeMessage = escapeHtml(message).replace(/\r?\n/g, "<br>");
+
     const { data, error } = await resend.emails.send({
-      from: "onboarding@resend.dev",
-      to: ["delivered@resend.dev"],
+      from: "Jacob Reitz Painting <website@jacobreitzpainting.com>",
+      to: ["lindsey.jacobreitzpainting@gmail.com"],
       replyTo: email,
       subject: subject || "New Contact Form Submission",
       html: `
-        <h2>New Contact Form Submission</h2>
-
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject || "No subject provided"}</p>
-
-        <h3>Message</h3>
-        <p>${message}</p>
-      `,
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${safeName}</p>
+      <p><strong>Email:</strong> ${safeEmail}</p>
+      <p><strong>Subject:</strong> ${safeSubject}</p>
+      <h3>Message</h3>
+      <p>${safeMessage}</p>
+    `,
     });
 
     if (error) {
