@@ -1,44 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import type { Review } from "../../types";
 
-type Testimonial = {
-  quote: string;
-  name: string;
-  location: string;
-};
-
-const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Can highly recommend Jacob Reitz Painting for your home project. Job was quoted, followed up on timeline and completed project before scheduled completion date. Jacob and crew are a delight to work with. I will choose his company for my interior painting as well.",
-    name: "Cheryl S.",
-    location: "Chino Hills, CA",
-  },
-  {
-    quote:
-      "I highly recommend Jacob Reitz Painting. I hired him to paint the exterior of my home; he was always very punctual, explained the process in detail, and ensured that I was not inconvenienced in any way.",
-    name: "Leticia M.",
-    location: "Montclair, CA",
-  },
-  {
-    quote:
-      "Jacob and his partner were very professional, always on time, and gave honest feedback on the work being done. It was a pleasure to work with painters who truly care about the work they perform.",
-    name: "Jennifer N.",
-    location: "Chino, CA",
-  },
-  {
-    quote:
-      "My house is older so my main concern was the prep work. Jacob and his partner did an outstanding job getting it ready for paint and did a phenomenal job taping off anything that could possibly need it.",
-    name: "Judy P.",
-    location: "Montclair, CA",
-  },
-];
-
-export default function Reviews() {
+export default function Reviews({
+  reviews,
+  heading,
+  intro,
+}: {
+  reviews: Review[];
+  heading: string;
+  intro: string;
+}) {
   const [active, setActive] = useState(0);
-  const current = testimonials[active];
+
+  useEffect(() => {
+    if (reviews.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setActive((current) => (current + 1) % reviews.length);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [reviews.length]);
+
+  const current = reviews[active];
 
   return (
     <section className="relative isolate bg-white py-16 px-4 sm:px-8 overflow-hidden lg:min-h-187.5 lg:flex lg:items-center">
@@ -55,32 +42,32 @@ export default function Reviews() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
         {/* Left: testimonial card, with paintbrush image bleeding out behind it */}
         <div className="relative">
-          <div className="relative rounded-md bg-grey-800 p-8 sm:p-10 text-white shadow-xl">
-            <h2 className="text-3xl sm:text-4xl font-bold">
-              What Do Our Clients Say?
-            </h2>
+          <div className="relative flex flex-col rounded-md bg-grey-800 p-8 sm:p-10 text-white shadow-xl min-h-150">
+            <h2 className="text-3xl lg:text-4xl font-bold">{heading}</h2>
             <div className="mt-2 h-px w-10 bg-orange-800" />
 
-            <p className="mt-6 text-slate-200">
-              Here are testimonials from clients about their experience and
-              results.
-            </p>
+            <p className="mt-6 text-slate-200">{intro}</p>
 
-            <div className="mt-10 relative">
-              <span className="absolute -top-4 -left-1 text-6xl font-serif text-slate-500 select-none">
-                &ldquo;
-              </span>
-              <p className="pl-6 text-lg leading-relaxed text-slate-100 min-h-35">
-                {current.quote}
-              </p>
+            <div className="mt-10">
+              <div className="relative">
+                <span className="absolute -top-4 -left-1 text-6xl font-serif text-slate-500 select-none">
+                  &ldquo;
+                </span>
 
-              <p className="pl-6 mt-6 text-lg">{current.name}</p>
-              <p className="pl-6 text-slate-400">{current.location}</p>
+                <p className="pl-6 text-lg leading-relaxed text-slate-100 h-70 overflow-y-auto">
+                  {current.quote}
+                </p>
+              </div>
+
+              <div className="pl-6 mt-4">
+                <p className="text-lg">{current.name}</p>
+                <p className="text-slate-400">{current.location}</p>
+              </div>
             </div>
 
             {/* Carousel dots */}
-            <div className="mt-8 flex gap-2">
-              {testimonials.map((_, i) => (
+            <div className="mt-auto mx-auto pt-8 flex gap-2">
+              {reviews.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setActive(i)}
@@ -95,7 +82,7 @@ export default function Reviews() {
               href="https://www.homeadvisor.com/rated.JacobReitzPainting.48249658.html"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-block bg-slate-100 px-5 py-4 text-sm font-medium text-slate-800 rounded-sm hover:bg-white transition-colors"
+              className="mt-6 inline-block bg-slate-100 px-5 py-4 text-sm font-medium text-center text-slate-800 rounded-sm hover:bg-white transition-colors"
             >
               Read More
             </a>

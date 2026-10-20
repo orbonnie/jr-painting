@@ -1,95 +1,36 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import {
+  Gem,
+  Expand,
+  HousePlus,
+  ChevronRight,
+  ChevronLeft,
+} from "lucide-react";
 import Image from "next/image";
+import type { HeroSlide } from "../../types";
 
-const slides = [
-  {
-    image: "/feature-1.jpg",
-    icon: (
-      <svg
-        width="55"
-        height="45"
-        viewBox="0 0 120 100"
-        fill="none"
-        stroke="#fc8b00"
-        strokeWidth="4"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      >
-        <polygon points="35,10 85,10 105,32 15,32" />
-        <line x1="35" y1="10" x2="15" y2="32" />
-        <line x1="85" y1="10" x2="105" y2="32" />
-        <line x1="60" y1="10" x2="60" y2="32" />
-        <line x1="60" y1="32" x2="60" y2="90" />
-        <line x1="15" y1="32" x2="105" y2="32" />
-        <line x1="15" y1="32" x2="60" y2="90" />
-        <line x1="105" y1="32" x2="60" y2="90" />
-      </svg>
-    ),
-    title: "Premiere Professional Painting",
-    description: "Serving Southern California Since 2009",
-    link: "/services",
-    linkText: "Our Services",
-  },
-  {
-    image: "/feature-2.jpg",
-    icon: (
-      <svg
-        width="40"
-        height="40"
-        viewBox="0 0 100 100"
-        fill="none"
-        stroke="#fc8b00"
-        strokeWidth="5"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      >
-        <polyline points="10,35 10,10 35,10" />
-        <line x1="10" y1="10" x2="30" y2="30" />
-        <polyline points="65,10 90,10 90,35" />
-        <line x1="90" y1="10" x2="70" y2="30" />
-        <polyline points="10,65 10,90 35,90" />
-        <line x1="10" y1="90" x2="30" y2="70" />
-        <polyline points="65,90 90,90 90,65" />
-        <line x1="90" y1="90" x2="70" y2="70" />
-      </svg>
-    ),
-    title: "Commercial & Residential",
-    description:
-      "Our seasoned painters specialize in high end and custom painting for a variety of buildings.",
-    link: "/contact",
-    linkText: "Contact Us",
-  },
-  {
-    image: "/feature-3.jpg",
-    icon: (
-      <svg
-        width="45"
-        height="60"
-        viewBox="0 0 100 130"
-        fill="none"
-        stroke="#fc8b00"
-        strokeWidth="4"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      >
-        <path d="M50,10 C75,25 85,55 50,100 C15,55 25,25 50,10 Z" />
-        <line x1="50" y1="30" x2="50" y2="120" />
-        <line x1="50" y1="70" x2="35" y2="58" />
-        <line x1="50" y1="85" x2="63" y2="75" />
-      </svg>
-    ),
-    title: "Full Service Painting",
-    description:
-      "We deliver complete quality workmanship on all projects, big and small. ",
-    link: "/projects",
-    linkText: "View Projects",
-  },
-];
+function renderIcon(icon?: string) {
+  const iconProps = {
+    size: 48,
+    color: "#fc8b00",
+    strokeWidth: 1.3,
+  };
 
-export default function Hero() {
+  switch (icon) {
+    case "Gem":
+      return <Gem {...iconProps} />;
+    case "Expand":
+      return <Expand {...iconProps} />;
+    case "HousePlus":
+      return <HousePlus {...iconProps} />;
+    default:
+      return null;
+  }
+}
+
+export default function Hero({ slides }: { slides: HeroSlide[] }) {
   const [index, setIndex] = useState(0);
   const [showContent, setShowContent] = useState(false);
 
@@ -99,6 +40,8 @@ export default function Hero() {
   };
 
   useEffect(() => {
+    if (slides.length === 0) return;
+
     const showContentTimeout = setTimeout(() => {
       setShowContent(true);
     }, 2000);
@@ -116,16 +59,16 @@ export default function Hero() {
       clearTimeout(hideContentTimeout);
       clearTimeout(slideTimeout);
     };
-  }, [index]);
+  }, [index, slides.length]);
 
   return (
     <section>
       <div className="relative h-150 overflow-hidden">
-        {slides.map((src, i) => (
+        {slides.map((slide, i) => (
           <Image
-            key={src.image}
-            src={src.image}
-            alt=""
+            key={`${slide.imageUrl}-${i}`}
+            src={slide.imageUrl}
+            alt={slide.alt || slide.title}
             fill
             loading="eager"
             className={`object-cover transition-opacity duration-2000 ease-linear ${
@@ -157,7 +100,7 @@ export default function Hero() {
                   : "translate-y-8 opacity-0"
               }`}
             >
-              {slides[index].icon}
+              {renderIcon(slides[index]?.icon)}
             </div>
 
             {/* Title */}
