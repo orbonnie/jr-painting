@@ -1,19 +1,23 @@
 import Link from "next/link";
-import { services } from "@/data/services";
+import { getServices } from "@/data/services";
 
 type SubpageHeroProps = {
   title: string;
   parent: string;
   parentHref: string;
+  slug?: string;
   showServiceNav?: boolean;
 };
 
-export default function SubpageHero({
+export default async function SubpageHero({
   title,
   parent,
   parentHref,
+  slug,
   showServiceNav = false,
 }: SubpageHeroProps) {
+  const services = showServiceNav ? await getServices() : [];
+
   return (
     <section className=" bg-grey-800">
       <div className="mx-auto flex min-h-60 max-w-6xl flex-col px-10 pt-16 md:px-20">
@@ -44,7 +48,7 @@ export default function SubpageHero({
                   key={item.slug}
                   href={`/services/${item.slug}`}
                   className={`text-xs uppercase tracking-wider transition-colors ${
-                    item.slug === title.toLowerCase()
+                    item.slug === slug
                       ? "text-orange-800"
                       : "text-white hover:text-orange-600"
                   }`}
