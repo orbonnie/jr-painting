@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { projects as projectData } from "@/data/projects";
+import type { Project } from "@/data/projects";
 import ProjectCard from "@/components/ProjectCard";
 
 type ProjectsProps = {
   title?: string;
-  projects?: typeof projectData;
+  projects: Project[];
   carousel?: boolean;
 };
 
 export default function Projects({
   title = "Recent Projects",
-  projects = projectData,
+  projects,
   carousel = true,
 }: ProjectsProps) {
   const [index, setIndex] = useState(0);
@@ -107,11 +107,7 @@ export default function Projects({
   );
 }
 
-function StackedProjectCard({
-  project,
-}: {
-  project: (typeof projectData)[number];
-}) {
+function StackedProjectCard({ project }: { project: Project }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (

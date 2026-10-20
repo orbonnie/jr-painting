@@ -41,13 +41,4 @@ export async function getServices(): Promise<Service[]> {
   const servicesData = (data as ServicesData) || null;
 
   return servicesData?.services ?? [];
-
-  // const result = data as {
-  //   services: SanityService[];
-  // } | null;
-
-  // return (result?.services ?? []).map((service) => ({
-  //   ...service,
-  //   slug: service.slug.current,
-  // }));
 }

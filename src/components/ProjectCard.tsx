@@ -4,7 +4,7 @@ import { type Dispatch, type SetStateAction } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/data/projects";
-import { cloudinaryImage } from "@/lib/cloudinaryImage";
+// import { cloudinaryImage } from "@/lib/cloudinaryImage";
 
 type ProjectCardProps = {
   project: Project;
@@ -32,7 +32,7 @@ export default function ProjectCard({
         aria-label={`${mobileOpen ? "Hide" : "Show"} project details`}
       >
         <Image
-          src={cloudinaryImage(project.images[0])}
+          src={project.images[0].asset.url}
           alt={project.title}
           fill
           loading="lazy"

@@ -3,12 +3,11 @@
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
-
-import { cloudinaryImage } from "@/lib/cloudinaryImage";
+import type { Project } from "@/data/projects";
 
 type ProjectCarouselProps = {
   title: string;
-  images: string[];
+  images: Project["images"];
 };
 
 export default function ProjectCarousel({
@@ -38,7 +37,7 @@ export default function ProjectCarousel({
       {/* Image */}
       <div className="relative aspect-4/3 w-full overflow-hidden">
         <Image
-          src={cloudinaryImage(images[index])}
+          src={images[index].asset.url}
           alt={`${title} project image ${index + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, 1024px"
@@ -77,7 +76,7 @@ export default function ProjectCarousel({
       <div className="mt-5 flex justify-center gap-2">
         {images.map((image, imageIndex) => (
           <button
-            key={image}
+            key={image._key}
             type="button"
             onClick={() => setIndex(imageIndex)}
             aria-label={`Show image ${imageIndex + 1}`}
