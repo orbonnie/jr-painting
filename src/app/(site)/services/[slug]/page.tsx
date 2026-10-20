@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 import SubpageHero from "@/components/SubpageHero";
 import Testimonials from "@/components/Testimonials";
 import Projects from "@/components/Projects";
+import { getServices } from "@/data/services";
 
 type Props = {
   params: Promise<{
@@ -14,7 +14,9 @@ type Props = {
 
 export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
-  const service = services.find((service) => service.slug === slug);
+
+  const services = await getServices();
+  const service = services.find((item) => item.slug === slug);
 
   if (!service) {
     notFound();
@@ -28,48 +30,6 @@ export default async function ServicePage({ params }: Props) {
         parentHref="/services"
         showServiceNav={true}
       />
-      {/* Hero */}
-      {/* <section className=" bg-grey-800">
-        <div className="mx-auto flex min-h-60 max-w-6xl flex-col px-10 pt-16 md:px-20">
-          <h1 className="text-5xl text-white font-semibold sm:text-4xl">
-            {service.title}
-          </h1>
-          <div className="mt-3 text-sm text-white">
-            <Link href="/" className="hover:text-orange-600">
-              Home
-            </Link>
-
-            <span className="mx-2">›</span>
-
-            <Link href="/services" className="hover:text-orange-600">
-              Services
-            </Link>
-
-            <span className="mx-2 text-orange-800">›</span>
-
-            <span className="text-orange-800">{service.title}</span>
-          </div> */}
-      {/* Service navigation */}
-      {/* <nav className="mt-auto border-t border-grey-300/20">
-            <div className="flex flex-wrap gap-x-8 gap-y-3 py-4">
-              {services.map((item) => (
-                <Link
-                  key={item.slug}
-                  href={`/services/${item.slug}`}
-                  className={`text-xs uppercase tracking-wider transition-colors ${
-                    item.slug === service.slug
-                      ? "text-orange-800"
-                      : "text-white hover:text-orange-600"
-                  }`}
-                >
-                  {item.title}
-                </Link>
-              ))}
-            </div>
-          </nav>
-        </div>
-      </section> */}
-
       {/* Descriptions */}
       <section className="mx-auto max-w-6xl py-16 px-10 md:px-20">
         <div className="w-3/4">
@@ -82,30 +42,30 @@ export default async function ServicePage({ params }: Props) {
             </h2>
           </div>
 
-          {service.description.interior && (
+          {service.interiorDescription && (
             <div>
-              {service.description.exterior && (
+              {service.exteriorDescription && (
                 <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-grey-900">
                   Interior:
                 </h3>
               )}
 
               <p className="whitespace-pre-line text-sm leading-7 text-grey-600">
-                {service.description.interior}
+                {service.interiorDescription}
               </p>
             </div>
           )}
 
-          {service.description.exterior && (
-            <div className={service.description.interior ? "mt-15" : ""}>
-              {service.description.interior && (
+          {service.exteriorDescription && (
+            <div className={service.interiorDescription ? "mt-15" : ""}>
+              {service.interiorDescription && (
                 <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-grey-900">
                   Exterior:
                 </h3>
               )}
 
               <p className="whitespace-pre-line text-sm leading-7 text-grey-600">
-                {service.description.exterior}
+                {service.exteriorDescription}
               </p>
             </div>
           )}
