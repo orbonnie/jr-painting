@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import Projects from "@/components/Projects";
-import { projects, type ProjectCategory } from "@/data/projects";
+import { type Project, type ProjectCategory } from "@/data/projects";
 
 type Filter = "all" | ProjectCategory;
+
+type ProjectFilterProps = {
+  projects: Project[];
+};
 
 const filters = [
   { label: "All", value: "all" },
@@ -14,7 +18,7 @@ const filters = [
   { label: "Residential", value: "residential" },
 ] as const;
 
-export default function ProjectFilter() {
+export default function ProjectFilter({ projects }: ProjectFilterProps) {
   const [filter, setFilter] = useState<Filter>("all");
 
   const filteredProjects =

@@ -4,7 +4,8 @@ import { reviews } from "./reviews";
 import { homeCTA } from "./homeCTA";
 import { locations } from "./locations";
 import { services } from "./services";
+import { projects } from "./projects";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [homePage, reviews, homeCTA, locations, services],
+  types: [homePage, reviews, homeCTA, locations, services, projects],
 };

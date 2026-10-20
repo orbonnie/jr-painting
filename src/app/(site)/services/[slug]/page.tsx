@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/data/projects";
 import SubpageHero from "@/components/SubpageHero";
 import Testimonials from "@/components/Testimonials";
 import Projects from "@/components/Projects";
@@ -16,6 +16,8 @@ export default async function ServicePage({ params }: Props) {
   const { slug } = await params;
 
   const services = await getServices();
+  const projects = await getProjects();
+
   const service = services.find((item) => item.slug === slug);
 
   if (!service) {

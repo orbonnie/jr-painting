@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-import { projects } from "@/data/projects";
+import { getProjects } from "@/data/projects";
 import ProjectCarousel from "@/components/ProjectCarousel";
 import SubpageHero from "@/components/SubpageHero";
 
@@ -12,6 +12,7 @@ type Props = {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
+  const projects = await getProjects();
 
   const project = projects.find((project) => project.slug === slug);
 
