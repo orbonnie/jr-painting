@@ -1,33 +1,51 @@
 import { Users, Gem, History, Heart } from "lucide-react";
+import { Feature } from "../../types";
 
-const features = [
-  {
-    title: "Professional Service",
-    description:
-      "Our team of professionals will help turn your vision into a reality.",
-    icon: Users,
-  },
-  {
-    title: "We deliver quality",
-    description:
-      "Quality workmanship and an attention to detail are cornerstones of our business.",
-    icon: Gem,
-  },
-  {
-    title: "Always on time",
-    description:
-      "You can expect our crew to arrive on time and finish projects within the timeframe discussed.",
-    icon: History,
-  },
-  {
-    title: "We Care",
-    description:
-      "We treat our customers and their projects with the same care and professionalism that we would our own families.",
-    icon: Heart,
-  },
-];
+const iconMap = {
+  Users,
+  Gem,
+  History,
+  Heart,
+};
 
-export default function HomeCTA() {
+// const features = [
+//   {
+//     title: "Professional Service",
+//     description:
+//       "Our team of professionals will help turn your vision into a reality.",
+//     icon: Users,
+//   },
+//   {
+//     title: "We deliver quality",
+//     description:
+//       "Quality workmanship and an attention to detail are cornerstones of our business.",
+//     icon: Gem,
+//   },
+//   {
+//     title: "Always on time",
+//     description:
+//       "You can expect our crew to arrive on time and finish projects within the timeframe discussed.",
+//     icon: History,
+//   },
+//   {
+//     title: "We Care",
+//     description:
+//       "We treat our customers and their projects with the same care and professionalism that we would our own families.",
+//     icon: Heart,
+//   },
+// ];
+
+export default function HomeCTA({
+  features,
+  heading,
+  button,
+  link,
+}: {
+  features: Feature[];
+  heading: string;
+  button: string;
+  link: string;
+}) {
   return (
     <section className="bg-white">
       {/* CTA */}
@@ -50,14 +68,14 @@ export default function HomeCTA() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-4">
           {features.map((feature) => {
-            const Icon = feature.icon;
+            const Icon = iconMap[feature.icon as keyof typeof iconMap];
 
             return (
               <div key={feature.title} className="text-center">
                 <Icon
                   size={42}
                   strokeWidth={1.25}
-                  className="mx-auto text-orange-800 stroke-3"
+                  className="mx-auto text-orange-800 stroke-1"
                 />
 
                 <h3 className="mt-5 text-lg uppercase">{feature.title}</h3>
