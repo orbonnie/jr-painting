@@ -3,6 +3,7 @@ import { sanityFetch } from "@/sanity/lib/live";
 import ContactForm from "@/components/ContactForm";
 import Testimonials from "@/components/Testimonials";
 import PageHero from "@/components/PageHero";
+import { getReviews } from "@/data/reviews";
 
 const quoteQuery = groq`
   *[_type == "quote"][0] {
@@ -22,6 +23,8 @@ export default async function RequestAQuotePage() {
   const { data } = await sanityFetch({
     query: quoteQuery,
   });
+
+  const { reviews } = await getReviews();
 
   const quote = (data as QuoteData) || null;
 
@@ -50,7 +53,7 @@ export default async function RequestAQuotePage() {
 
       <hr className="mx-[10vw] text-grey-400" />
 
-      <Testimonials />
+      <Testimonials reviews={reviews} />
     </main>
   );
 }

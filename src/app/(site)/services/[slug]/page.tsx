@@ -5,6 +5,7 @@ import SubpageHero from "@/components/SubpageHero";
 import Testimonials from "@/components/Testimonials";
 import Projects from "@/components/Projects";
 import { getServices } from "@/data/services";
+import { getReviews } from "@/data/reviews";
 
 type Props = {
   params: Promise<{
@@ -17,6 +18,7 @@ export default async function ServicePage({ params }: Props) {
 
   const services = await getServices();
   const projects = await getProjects();
+  const { reviews } = await getReviews();
 
   const service = services.find((item) => item.slug === slug);
 
@@ -85,7 +87,7 @@ export default async function ServicePage({ params }: Props) {
 
       <hr className="text-grey-400 mx-[10vw]" />
 
-      <Testimonials />
+      <Testimonials reviews={reviews} />
 
       <hr className="text-grey-400 mx-[10vw]" />
 
