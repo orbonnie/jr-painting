@@ -1,18 +1,51 @@
+import { groq } from "next-sanity";
+import { sanityFetch } from "@/sanity/lib/live";
 import ContactForm from "@/components/ContactForm";
 import PageHero from "@/components/PageHero";
 
-export default function ContactPage() {
+const contactQuery = groq`
+  *[_type == "contact"][0] {
+    pageTitle,
+    formHeading,
+    contactHeading,
+    introText,
+    phone,
+    phoneLink,
+    email
+  }
+`;
+
+type ContactData = {
+  pageTitle: string;
+  formHeading: string;
+  contactHeading: string;
+  introText: string;
+  phone: string;
+  phoneLink: string;
+  email: string;
+};
+
+export default async function ContactPage() {
+  const { data } = await sanityFetch({
+    query: contactQuery,
+  });
+
+  const contact = (data as ContactData) || null;
+
+  if (!contact) {
+    return null;
+  }
   return (
     <main>
       {/* Hero */}
-      <PageHero title="Contact Us" />
+      <PageHero title={contact.pageTitle} />
       <section className="mx-auto max-w-6xl px-10 py-16 md:px-20 lg:px-16">
         <div className="grid gap-16 md:grid-cols-2">
           {/* Form */}
           <div>
             <div>
               <h2 className="mb-2 text-2xl font-semibold text-grey-900">
-                Send Us a Message
+                {contact.formHeading}
               </h2>
               <div className="mb-5 h-px w-10 bg-orange-800" />
             </div>
@@ -23,15 +56,13 @@ export default function ContactPage() {
           <div className="order-first md:order-last">
             <div>
               <h2 className="mb-2 text-2xl font-semibold text-grey-900">
-                Contact Info
+                {contact.contactHeading}
               </h2>
               <div className="mb-5 h-px w-10 bg-orange-800" />
             </div>
 
             <p className="text-sm leading-7 text-grey-600">
-              If you are interested in a quote for your project or if you have
-              any questions, please use this form to get in touch with our team.
-              We try to respond to all inquiries within two business days.
+              {contact.introText}
             </p>
 
             <div className="mt-10">
@@ -40,10 +71,10 @@ export default function ContactPage() {
               </h3>
 
               <a
-                href="tel:+13104979326"
+                href={`tel:${contact.phoneLink}`}
                 className="mt-2 block text-sm text-grey-600 hover:text-orange-800"
               >
-                (310) 497-9326
+                {contact.phone}
               </a>
             </div>
 
@@ -53,10 +84,10 @@ export default function ContactPage() {
               </h3>
 
               <a
-                href="mailto:info.jacobreitzpainting@gmail.com"
+                href={`mailto:${contact.email}`}
                 className="mt-2 block text-sm text-grey-600 hover:text-orange-800"
               >
-                info.jacobreitzpainting@gmail.com
+                {contact.email}
               </a>
             </div>
           </div>
