@@ -6,8 +6,9 @@ import HomeAdvisor from "@/components/HomeAdvisor";
 import Locations from "@/components/Locations";
 import Reviews from "@/components/Reviews";
 import HomeCTA from "@/components/HomeCTA";
+import { getReviews } from "@/data/reviews";
 
-import type { HeroSlide, Review, Feature } from "../../../types";
+import type { HeroSlide, Feature } from "../../../types";
 
 const heroQuery = groq`
   *[_type == "homePage"][0] {
@@ -21,18 +22,6 @@ const heroQuery = groq`
       linkText,
       alt,
       "imageUrl": image.asset->url
-    }
-  }
-`;
-
-const reviewsQuery = groq`
-  *[_type == "reviews"][0] {
-    heading,
-    intro,
-    reviewList[] {
-      name,
-      location,
-      "quote": text
     }
   }
 `;
@@ -67,12 +56,6 @@ type HeroData = {
   heroSlides: HeroSlide[] | null;
 };
 
-type ReviewsData = {
-  heading: string;
-  intro?: string;
-  reviewList: Review[];
-};
-
 type HomeCTAData = {
   ctaHeading: string;
   ctaIcon: string;
@@ -93,9 +76,7 @@ export default async function Home() {
     query: heroQuery,
   });
 
-  const { data: reviews } = await sanityFetch({
-    query: reviewsQuery,
-  });
+  const { heading, intro, reviews } = await getReviews();
 
   const { data: homeCTA } = await sanityFetch({
     query: homeCTAQuery,
@@ -106,15 +87,10 @@ export default async function Home() {
   });
 
   const heroData = data as HeroData | null;
-  const reviewsData = reviews as ReviewsData | null;
   const homeCTAData = homeCTA as HomeCTAData | null;
   const locationsData = locations as LocationsData | null;
 
   const slides = heroData?.heroSlides ?? [];
-
-  const reviewList = reviewsData?.reviewList ?? [];
-  const reviewHeading = reviewsData?.heading ?? "Reviews";
-  const reviewIntro = reviewsData?.intro ?? "";
 
   const features = homeCTAData?.features ?? [];
   const ctaHeading = homeCTAData?.ctaHeading ?? "We can help!";
@@ -143,11 +119,7 @@ export default async function Home() {
         locationsHeading={locationsHeading}
         serviceAreas={serviceAreas}
       />
-      <Reviews
-        reviews={reviewList}
-        heading={reviewHeading}
-        intro={reviewIntro}
-      />
+      <Reviews reviews={reviews} heading={heading} intro={intro} />
       <HomeCTA
         features={features}
         heading={ctaHeading}

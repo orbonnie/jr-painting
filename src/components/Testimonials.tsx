@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { reviews } from "@/data/reviews";
+import { Review } from "../../types";
 
-export default function Testimonials() {
+export default function Testimonials({ reviews }: { reviews: Review[] }) {
   const [index, setIndex] = useState(0);
   const [hovered, setHovered] = useState(false);
 
@@ -15,7 +15,7 @@ export default function Testimonials() {
     }, 6000);
 
     return () => clearInterval(interval);
-  }, [hovered]);
+  }, [hovered, reviews.length]);
 
   return (
     <section className="w-full">
@@ -37,7 +37,9 @@ export default function Testimonials() {
               </span>
 
               <div>
-                <p className="text-sm leading-7 text-grey-900">{review.text}</p>
+                <p className="text-sm leading-7 text-grey-900">
+                  {review.quote}
+                </p>
 
                 <p className="mt-4 text-lg text-grey-900">— {review.name}</p>
 
@@ -60,7 +62,7 @@ export default function Testimonials() {
                 onMouseLeave={() => setHovered(false)}
               >
                 <p className="text-sm leading-7 text-grey-900">
-                  {reviews[index].text}
+                  {reviews[index].quote}
                 </p>
 
                 <p className="mt-4 text-lg text-grey-900">
