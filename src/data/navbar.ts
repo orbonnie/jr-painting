@@ -14,9 +14,9 @@ type NavbarData = {
 export async function getNavbarLogo(): Promise<string> {
   const { data } = await sanityFetch({
     query: navbarQuery,
+    stega: false,
   });
 
   const navbar = data as NavbarData | null;
-
   return navbar?.logoUrl ?? "/jr-painting.png";
 }

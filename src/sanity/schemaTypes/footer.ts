@@ -6,6 +6,12 @@ export const footer = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "title",
+      title: "Document Title",
+      type: "string",
+      initialValue: "Footer",
+    }),
+    defineField({
       name: "aboutHeading",
       title: "About Heading",
       type: "string",
