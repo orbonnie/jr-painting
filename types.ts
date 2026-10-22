@@ -19,3 +19,8 @@ export type Feature = {
   description: string;
   icon: string;
 };
+
+export type SocialLink = {
+  label: string;
+  href: string;
+};

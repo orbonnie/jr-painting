@@ -1,6 +1,45 @@
+import { sanityFetch } from "../sanity/lib/live";
+import { groq } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import SocialLinks from "@/components/SocialLinks";
+import { SocialLink } from "../../types";
+
+const footerQuery = groq`
+  *[_type == "footer"][0] {
+    aboutHeading,
+    "logo": logo.asset->url,
+    aboutText,
+    servicesHeading,
+    contactHeading,
+    phone,
+    phoneLink,
+    email,
+    copyright,
+    services[] {
+      label,
+      href,
+    }
+  }
+`;
+
+type Service = {
+  label: string;
+  href: string;
+};
+
+type FooterData = {
+  aboutHeading: string;
+  logo: string;
+  aboutText: string;
+  servicesHeading: string;
+  contactHeading: string;
+  phone: string;
+  phoneLink: string;
+  email: string;
+  copyright: string;
+  services: Service[];
+};
 
 const services = [
   { label: "Painting", href: "/services/painting" },
@@ -9,7 +48,17 @@ const services = [
   { label: "Repairs", href: "/services/repairs" },
 ];
 
-export default function Footer() {
+export default async function Footer({
+  socialLinks,
+}: {
+  socialLinks: SocialLink[];
+}) {
+  const { data } = await sanityFetch({
+    query: footerQuery,
+  });
+
+  const footer = (data as FooterData) || null;
+
   return (
     <footer className="bg-grey-800 text-white">
       {/* Main footer */}
@@ -18,10 +67,10 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-widest">
-              About Us
+              {footer.aboutHeading}
             </h3>
             <Image
-              src="/jr-logo-transp.png"
+              src={footer.logo}
               alt="Jacob Reitz Painting"
               width={200}
               height={200}
@@ -29,20 +78,18 @@ export default function Footer() {
             />
 
             <p className="mt-6 max-w-md text-sm leading-7 text-gray-300">
-              Being Southern California&apos;s leading painting service means
-              that we are committed to every project, making every client&apos;s
-              vision a reality.
+              {footer.aboutText}
             </p>
           </div>
 
           {/* Services */}
           <div className="px-1">
             <h3 className="text-sm font-semibold uppercase tracking-widest">
-              Services
+              {footer.servicesHeading}
             </h3>
 
             <nav className="mt-6 flex flex-col gap-3">
-              {services.map((service) => (
+              {footer.services.map((service) => (
                 <Link
                   key={service.href}
                   href={service.href}
@@ -56,25 +103,32 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-widest">
-              Contact Us
+              {footer.contactHeading}
             </h3>
 
             <div className="mt-6 flex flex-col gap-3 text-sm text-gray-300">
-              <a href="tel:+13104979326" className="hover:text-orange-700">
-                (310) 497-9326
-              </a>
               <a
-                href="mailto:info.jacobreitzpainting@gmail.com"
+                href={`tel:${footer.phoneLink}`}
                 className="hover:text-orange-700"
               >
-                info.jacobreitzpainting@gmail.com
+                {footer.phone}
+              </a>
+              <a
+                href={`mailto:${footer.email}`}
+                className="hover:text-orange-700"
+              >
+                {footer.email}
               </a>
             </div>
           </div>
         </div>
         {/* Social links */}
         <div className="mt-5 pt-6">
-          <SocialLinks textColor="text-orange-800" hoverColor="text-grey-400" />
+          <SocialLinks
+            links={socialLinks}
+            textColor="text-orange-800"
+            hoverColor="text-grey-400"
+          />
         </div>
       </div>
 
@@ -82,7 +136,7 @@ export default function Footer() {
       <div className="border-t border-gray-700 bg-grey-900">
         <div className="mx-auto max-w-6xl px-6 py-5">
           <p className="text-center text-sm text-gray-400">
-            © 2017 Jacob Reitz Painting. All rights reserved.
+            {footer.copyright}
           </p>
         </div>
       </div>

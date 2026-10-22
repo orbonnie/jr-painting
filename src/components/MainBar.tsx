@@ -11,7 +11,7 @@ const navLinks = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-export default function MainBar() {
+export default function MainBar({ logoUrl }: { logoUrl: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -56,7 +56,7 @@ export default function MainBar() {
         <div className="flex items-center">
           <Link href="/">
             <Image
-              src="/jr-painting.png"
+              src={logoUrl}
               alt="Jacob Reitz Painting"
               width={200}
               height={200}
