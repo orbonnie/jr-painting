@@ -18,9 +18,9 @@ type SocialLinksData = {
 export async function getSocialLinks(): Promise<SocialLink[]> {
   const { data } = await sanityFetch({
     query: socialLinkQuery,
+    stega: false,
   });
 
   const socialLinksData = (data as SocialLinksData) || null;
-
   return socialLinksData?.links ?? [];
 }

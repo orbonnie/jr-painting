@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity/visual-editing";
+import { SanityLive } from "@/sanity/lib/live";
 import { Geist, Montserrat } from "next/font/google";
 import "./globals.css";
-import { SanityLive } from "@/sanity/lib/live";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +23,13 @@ export const metadata: Metadata = {
   description: "Professional commercial and residential painting services.",
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  const { isEnabled } = await draftMode();
+
   return (
     <html
       lang="en"
@@ -30,6 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="min-h-full">
         {children}
         <SanityLive />
+        {isEnabled && <VisualEditing />}
       </body>
     </html>
   );
