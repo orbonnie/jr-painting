@@ -3,10 +3,13 @@ import { groq } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import SocialLinks from "@/components/SocialLinks";
-import { SocialLink } from "../../types";
+import { SocialData } from "../../types";
+import { sanityAttr } from "@/lib/sanityAttr";
 
 const footerQuery = groq`
   *[_type == "footer"][0] {
+    "docId": _id,
+    "docType": _type,
     aboutHeading,
     "logo": logo.asset->url,
     aboutText,
@@ -29,6 +32,8 @@ type Service = {
 };
 
 type FooterData = {
+  docId: string;
+  docType: string;
   aboutHeading: string;
   logo: string;
   aboutText: string;
@@ -41,23 +46,25 @@ type FooterData = {
   services: Service[];
 };
 
-const services = [
-  { label: "Painting", href: "/services/painting" },
-  { label: "Cabinetry", href: "/services/cabinetry" },
-  { label: "Cleaning", href: "/services/cleaning" },
-  { label: "Repairs", href: "/services/repairs" },
-];
+// const services = [
+//   { label: "Painting", href: "/services/painting" },
+//   { label: "Cabinetry", href: "/services/cabinetry" },
+//   { label: "Cleaning", href: "/services/cleaning" },
+//   { label: "Repairs", href: "/services/repairs" },
+// ];
 
 export default async function Footer({
-  socialLinks,
+  socialData,
 }: {
-  socialLinks: SocialLink[];
+  socialData: SocialData;
 }) {
   const { data } = await sanityFetch({
     query: footerQuery,
   });
 
   const footer = (data as FooterData) || null;
+
+  const attr = sanityAttr(footer.docId, footer.docType);
 
   return (
     <footer className="bg-grey-800 text-white">
@@ -72,6 +79,7 @@ export default async function Footer({
             <Image
               src={footer.logo}
               alt="Jacob Reitz Painting"
+              data-sanity={attr.scope("logo").toString()}
               width={200}
               height={200}
               className="mt-6 h-24 w-auto"
@@ -125,7 +133,7 @@ export default async function Footer({
         {/* Social links */}
         <div className="mt-5 pt-6">
           <SocialLinks
-            links={socialLinks}
+            data={socialData}
             textColor="text-orange-800"
             hoverColor="text-grey-400"
           />

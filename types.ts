@@ -23,4 +23,17 @@ export type Feature = {
 export type SocialLink = {
   label: string;
   href: string;
+  _key?: string;
+};
+
+export type SocialData = {
+  docId: string | undefined;
+  docType: string | undefined;
+  links: SocialLink[];
+};
+
+export type LogoData = {
+  docId?: string | null;
+  docType?: string | null;
+  logoUrl: string;
 };

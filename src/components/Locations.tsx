@@ -1,16 +1,25 @@
 import Image from "next/image";
+import { LogoData } from "../../types";
+import { sanityAttr } from "@/lib/sanityAttr";
 
 export default function Locations({
+  logoData,
   aboutHeading,
   aboutIntro,
   locationsHeading,
   serviceAreas,
 }: {
+  logoData: LogoData;
   aboutHeading: string;
   aboutIntro: string;
   locationsHeading: string;
   serviceAreas: string[];
 }) {
+  const attr =
+    logoData.docId && logoData.docType
+      ? sanityAttr(logoData.docId, logoData.docType)
+      : null;
+
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-6xl px-6 py-16">
@@ -21,8 +30,9 @@ export default function Locations({
               {/* Logo */}
               <div className="shrink-0">
                 <Image
-                  src="/jr-logo-transp.png"
+                  src={logoData.logoUrl}
                   alt="Jacob Reitz Painting"
+                  data-sanity={attr ? attr.scope("logo").toString() : undefined}
                   width={200}
                   height={200}
                   className="h-auto w-full max-w-36"

@@ -1,8 +1,10 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { stegaClean } from "next-sanity";
 import { useHoverReset } from "@/hooks/useHoverReset";
-import { SocialLink } from "../../types";
+import { SocialData, SocialLink } from "../../types";
+import { sanityAttr } from "@/lib/sanityAttr";
 
 type SocialIcon = {
   label: string;
@@ -63,10 +65,12 @@ function SocialCard({
   social,
   textColor,
   hoverColor,
+  dataSanity,
 }: {
   social: SocialLink & { icon: ReactNode };
   textColor: string;
   hoverColor: string;
+  dataSanity?: string;
 }) {
   const hover = useHoverReset();
 
@@ -76,6 +80,7 @@ function SocialCard({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={social.label}
+      data-sanity={dataSanity}
       onMouseEnter={hover.onMouseEnter}
       onMouseLeave={hover.onMouseLeave}
       className={`transition-colors ${hover.hovered ? hoverColor : textColor}`}
@@ -86,17 +91,22 @@ function SocialCard({
 }
 
 export default function SocialLinks({
-  links,
+  data,
   textColor = "text-grey-400",
   hoverColor = "text-orange-600",
 }: {
-  links: SocialLink[];
+  data: SocialData;
   textColor?: string;
   hoverColor?: string;
 }) {
-  const displayedLinks = links
+  const attr =
+    data.docId && data.docType ? sanityAttr(data.docId, data.docType) : null;
+
+  const displayedLinks = data.links
     .map((link) => {
-      const icon = socialIcons.find((social) => social.label === link.label);
+      const icon = socialIcons.find(
+        (social) => social.label === stegaClean(link.label),
+      );
 
       if (!icon) return null;
 
@@ -114,9 +124,14 @@ export default function SocialLinks({
         <div key={social.label} className="flex items-center gap-2">
           <SocialCard
             social={social}
-            key={social.label}
             textColor={textColor}
             hoverColor={hoverColor}
+            aria-label={stegaClean(social.label)}
+            dataSanity={
+              attr
+                ? attr.scope(`links[_key=="${social._key}"]`).toString()
+                : undefined
+            }
           />
           <span className="text-grey-400">{social.separator}</span>
         </div>

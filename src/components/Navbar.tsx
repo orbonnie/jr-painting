@@ -2,22 +2,22 @@
 
 import TopBar from "./TopBar";
 import MainBar from "./MainBar";
-import { SocialLink } from "../../types";
+import { SocialData, LogoData } from "../../types";
 
 export default function Navbar({
-  socialLinks,
-  logoUrl,
+  socialData,
+  logoData,
 }: {
-  socialLinks: SocialLink[];
-  logoUrl: string;
+  socialData: SocialData;
+  logoData: LogoData;
 }) {
   // const [open, setOpen] = useState(false);
 
   return (
     <>
-      <TopBar socialLinks={socialLinks} />
+      <TopBar socialData={socialData} />
       <div className="sticky top-0 z-50">
-        <MainBar logoUrl={logoUrl} />
+        <MainBar logoData={logoData} />
       </div>
     </>
   );

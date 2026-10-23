@@ -43,8 +43,9 @@ const homeCTAQuery = groq`
 
 const locationsQuery = groq`
   *[_type == "locations"][0] {
-    _id,
-    _updatedAt,
+    "docId": _id,
+    "docType": _type,
+    "logoUrl": logoUrl.asset->url,
     aboutHeading,
     aboutDescription,
     locationsHeading,
@@ -65,6 +66,9 @@ type HomeCTAData = {
 };
 
 type LocationsData = {
+  docId: string;
+  docType: string;
+  logoUrl: string;
   aboutHeading: string;
   aboutDescription: string;
   locationsHeading: string;
@@ -97,6 +101,12 @@ export default async function Home() {
   const ctaButton = homeCTAData?.ctaButtonText ?? "Contact Us";
   const ctaLink = homeCTAData?.ctaButtonLink ?? "/contact";
 
+  const logoData = {
+    docId: locationsData?.docId ?? null,
+    docType: locationsData?.docType ?? null,
+    logoUrl: locationsData?.logoUrl ?? "/jr-logo-transp.png",
+  };
+
   const aboutHeading =
     locationsData?.aboutHeading ??
     "One of Southern California's Leading Paint Services";
@@ -114,6 +124,7 @@ export default async function Home() {
       <Hero slides={slides} />
       <HomeAdvisor />
       <Locations
+        logoData={logoData}
         aboutHeading={aboutHeading}
         aboutIntro={aboutDescription}
         locationsHeading={locationsHeading}
