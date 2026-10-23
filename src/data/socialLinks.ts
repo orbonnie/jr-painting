@@ -4,7 +4,10 @@ import { SocialLink } from "../../types";
 
 const socialLinkQuery = groq`
   *[_type == "socialLinks"][0] {
+    "docId": _id,
+    "docType": _type,
     links[] {
+      _key,
       label,
       href
     }
@@ -12,15 +15,17 @@ const socialLinkQuery = groq`
 `;
 
 type SocialLinksData = {
+  docId: string | undefined;
+  docType: string | undefined;
   links: SocialLink[];
 };
 
-export async function getSocialLinks(): Promise<SocialLink[]> {
+export async function getSocialData() {
   const { data } = await sanityFetch({
     query: socialLinkQuery,
     stega: false,
   });
 
   const socialLinksData = (data as SocialLinksData) || null;
-  return socialLinksData?.links ?? [];
+  return socialLinksData || null;
 }

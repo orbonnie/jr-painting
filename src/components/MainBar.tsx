@@ -5,13 +5,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 
+import { sanityAttr } from "@/lib/sanityAttr";
+import { LogoData } from "../../types";
+
 const navLinks = [
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "Contact Us", href: "/contact" },
 ];
 
-export default function MainBar({ logoUrl }: { logoUrl: string }) {
+type MainBarProps = {
+  logoData: LogoData;
+};
+
+export default function MainBar({ logoData }: MainBarProps) {
+  const attr = sanityAttr(logoData.docId!, logoData.docType!);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -56,8 +65,9 @@ export default function MainBar({ logoUrl }: { logoUrl: string }) {
         <div className="flex items-center">
           <Link href="/">
             <Image
-              src={logoUrl}
+              src={logoData.logoUrl}
               alt="Jacob Reitz Painting"
+              data-sanity={attr.scope("logo").toString()}
               width={200}
               height={200}
               className="h-14 w-auto"

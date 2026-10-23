@@ -12,6 +12,11 @@ export const locations = defineType({
       initialValue: "Locations & About",
     }),
     defineField({
+      name: "logoUrl",
+      title: "Logo",
+      type: "image",
+    }),
+    defineField({
       name: "aboutHeading",
       title: "About Heading",
       type: "string",
