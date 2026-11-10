@@ -4,7 +4,7 @@ import { type Dispatch, type SetStateAction } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/data/projects";
-// import { cloudinaryImage } from "@/lib/cloudinaryImage";
+import sanityLoader from "@/lib/sanityLoader";
 
 type ProjectCardProps = {
   project: Project;
@@ -33,6 +33,7 @@ export default function ProjectCard({
       >
         <Image
           src={project.images[0].asset.url}
+          loader={sanityLoader}
           alt={project.title}
           fill
           loading="lazy"

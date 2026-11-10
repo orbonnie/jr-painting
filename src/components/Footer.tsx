@@ -78,6 +78,7 @@ export default async function Footer({
             </h3>
             <Image
               src={footer.logo}
+              unoptimized
               alt="Jacob Reitz Painting"
               data-sanity={attr.scope("logo").toString()}
               width={200}

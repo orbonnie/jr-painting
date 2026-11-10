@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import type { HeroSlide } from "../../types";
+import sanityLoader from "@/lib/sanityLoader";
 
 function renderIcon(icon?: string) {
   const iconProps = {
@@ -68,6 +69,8 @@ export default function Hero({ slides }: { slides: HeroSlide[] }) {
           <Image
             key={`${slide.imageUrl}-${i}`}
             src={slide.imageUrl}
+            loader={sanityLoader}
+            sizes="100vw"
             alt={slide.alt || slide.title}
             fill
             loading="eager"
