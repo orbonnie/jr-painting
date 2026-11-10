@@ -31,7 +31,8 @@ export default function Reviews({
     <section className="relative isolate bg-white py-16 px-4 sm:px-8 overflow-hidden lg:min-h-187.5 lg:flex lg:items-center">
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/paintbrush.png"
+          src="/paintbrush-reviews.jpg"
+          unoptimized
           alt=""
           fill
           sizes="100vw"

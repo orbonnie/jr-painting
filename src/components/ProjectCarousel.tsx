@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import type { Project } from "@/data/projects";
+import sanityLoader from "@/lib/sanityLoader";
 
 type ProjectCarouselProps = {
   title: string;
@@ -38,6 +39,7 @@ export default function ProjectCarousel({
       <div className="relative aspect-4/3 w-full overflow-hidden">
         <Image
           src={images[index].asset.url}
+          loader={sanityLoader}
           alt={`${title} project image ${index + 1}`}
           fill
           sizes="(max-width: 768px) 100vw, 1024px"

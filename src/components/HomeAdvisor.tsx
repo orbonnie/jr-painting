@@ -20,6 +20,7 @@ export default function HomeAdvisor() {
         <div className="mx-auto mt-8 flex w-full flex-col items-center gap-6 sm:w-[80%] sm:flex-row sm:justify-between sm:gap-0 lg:w-[60%]">
           <Image
             src="/ha-toprated.jpg"
+            unoptimized
             alt="Home Advisor Top Rated"
             width={200}
             height={200}
@@ -28,6 +29,7 @@ export default function HomeAdvisor() {
 
           <Image
             src="/boha-2019.jpg"
+            unoptimized
             alt="Home Advisor Best of 2019"
             width={200}
             height={200}
@@ -36,6 +38,7 @@ export default function HomeAdvisor() {
 
           <Image
             src="/ha-elite.jpg"
+            unoptimized
             alt="Home Advisor Elite Service"
             width={200}
             height={200}

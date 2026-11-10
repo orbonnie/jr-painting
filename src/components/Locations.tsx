@@ -31,6 +31,7 @@ export default function Locations({
               <div className="shrink-0">
                 <Image
                   src={logoData.logoUrl}
+                  unoptimized
                   alt="Jacob Reitz Painting"
                   data-sanity={attr ? attr.scope("logo").toString() : undefined}
                   width={200}

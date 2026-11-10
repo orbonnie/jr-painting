@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Menu } from "lucide-react";
 
 import { sanityAttr } from "@/lib/sanityAttr";
+import sanityLoader from "@/lib/sanityLoader";
 import { LogoData } from "../../types";
 
 const navLinks = [
@@ -66,6 +67,7 @@ export default function MainBar({ logoData }: MainBarProps) {
           <Link href="/">
             <Image
               src={logoData.logoUrl}
+              loader={sanityLoader}
               alt="Jacob Reitz Painting"
               data-sanity={attr.scope("logo").toString()}
               width={200}
